@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <link rel="icon" type="image/x-icon" href="../Images/aerotigers-logo.webp">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/040299a7da.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <link rel="stylesheet" href="../general.css">
+        <link rel="stylesheet" href="photos.css">
+        <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+        <nav>
+            <a href="../index.html"><img src="../Images/AeroTigers-Black_Icon.png"></a>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="../index.html">HOME</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="line1"></div>
+        <h1>Photo Gallery</h1>
+        <div class="custom-select" style="width:200px;">
+            <select id="selectContainer">
+            </select>
+        </div>
+        <div class="loading" id="loading">
+            <p>Loading</p>
+            <div class="loader"></div>
+        </div>
+        <div class="photomain" id="photomain">
+            <h2>Photos</h2>
+            <section class="photos">
+                <i class="fa-solid fa-chevron-left" role="button" id="leftbutton1"></i>
+                <a href="photo2.html"><img src="../Images/AeroTigers_2023Team.png" id="image1"></a>
+                <i class="fa-solid fa-chevron-right" role="button" id="rightbutton1"></i>
+            </section>
+            <h3 id="photo_number1">1 / 1</h3>
+
+            <div id="videoholder">
+                
+            </div>
+            <div id="compholder">
+                <h2>Competition</h2>
+                <section class="photos">
+                    <i class="fa-solid fa-chevron-left" role="button" id="leftbutton2"></i>
+                    <a href="photo2.html"><img src="../Images/2022-2023 Photos/Competition/" id="image2"></a>
+                    <i class="fa-solid fa-chevron-right" role="button" id="rightbutton2"></i>
+                </section>
+                <h3 id="photo_number2">1 / 1</h3>
+            </div>
+        </div>
+        <script src="photos.js"></script>
+    </body>
+</html>

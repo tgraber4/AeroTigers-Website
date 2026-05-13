@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.backarr {  
+    text-align: center;
+    width: 18%;
+}
+.fullscr { 
+    text-align: center; 
+    width: 18%;
+}
+.img { 
+    text-align: center;
+    width: 64%;
+}
+.flex-container {
+    display: flex;
+    margin-top: 10px;
+}
+.fa-solid {
+    font-size: 50px;
+    color: black;
+}
+.fa-solid:hover {
+    color: grey;
+    cursor: pointer;
+}
+#image1 {
+    width: 100%;
+}
+
+
+
+@media(max-width: 700px) {
+}

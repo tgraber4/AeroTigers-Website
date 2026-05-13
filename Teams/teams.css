@@ -1,0 +1,150 @@
+
+.team-names {
+    display: flex;
+    width: 80%;
+    margin: 20px 10%;
+}
+.team-names div {
+    width: 190px;
+    margin: auto;
+    font-size: 20px;
+    border-color: white;
+    border-bottom-style: solid;
+    border-width: 1px;
+    text-align: center;
+}
+#teamheading1 {
+    border-color: black;
+}
+.teamdesc {
+    width: 35%;
+    background-color: white;
+    border-width: 4px;
+    border-color: #ffecb3;
+    border-style: solid;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+    margin-left: auto; 
+    margin-right: auto;
+}
+.teamdesc:hover {
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+.teamdesc h2, p {
+    text-align: center;
+}
+.teamdesc p {
+    margin: 30px 0px;
+    line-height: 170%;
+
+}
+.team-names div:hover {
+    cursor: pointer;
+}
+.back {
+    background-color: #ffcc33;
+    width: 100%;
+    padding: 20px 0px;
+}
+
+.teamlead {
+    width: 35%;
+    background-color: white;
+    border-color: #ffecb3;
+    border-width: 4px;
+    border-style: solid;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-left: auto; 
+    margin-right: auto;
+    padding: 0.5%;
+    text-align: center;
+}
+.multi-teams {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 60px;
+}
+.teamlead:hover {
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+.teamlead h3 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.teamlead h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.teamlead img {
+    width: 80%;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    border-color: grey;
+    border-width: 2px;
+    border-style: solid;
+}
+.teamlead h5 {
+    font-size: 16px;
+    margin-top: 5px;
+}
+.teamlead p {
+    margin-top: 5px;
+    padding: 0px 10px;
+    line-height: 160%;
+    margin-bottom: 5px;
+}
+@media(max-width: 1000px) {
+    .teamdesc {
+        width: 50%;
+    }
+    .teamlead {
+        width: 50%;
+    }
+    .team-names {
+        width: 85%;
+        margin: 20px 7.5%;
+    }
+    .team-names div {
+        font-size: 16px;
+    }
+}
+@media(max-width: 700px) {
+    .teamdesc {
+        width: 75%;
+        padding-bottom: 20px;
+    }
+    .teamdesc p {
+        font-size: 14px;
+    }
+    .team-names div {
+        font-size: 11px;
+    }
+    .teamlead {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+    .teamlead img {
+        width: 80%;
+    }
+    .multi-teams {
+        flex-direction: column;
+        row-gap: 5px;
+    }
+    
+}
+
+@media(max-width: 500px) {
+    .team-names {
+        width: 95%;
+        margin: 20px 2.5%;
+    }
+    .team-names div {
+        font-size: 9.5px;
+    }
+}

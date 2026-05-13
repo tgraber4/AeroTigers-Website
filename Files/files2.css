@@ -1,0 +1,22 @@
+* {
+    margin: 0px;
+}
+.backarrow {  grid-area: backarrow; }
+.pdf { grid-area: pdf; }
+.container {
+    display: grid;
+    grid-template-areas:
+      'backarrow pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf pdf';
+    height: 100%;
+  }
+.fa-solid {
+    font-size: 25px;
+    color: black;
+}
+.fa-solid:hover {
+    color: grey;
+}
+.backarrow {
+    text-align: center;
+    margin-top: 4px;
+}
