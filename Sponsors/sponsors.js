@@ -35,15 +35,13 @@ var CreateSponsor = function (ImageLink, Supplies, Name, Link, LinkName) {
     element.appendChild(maindiv);
 }
 
-CreateSponsor("../Images/Logos/Mizzou_Engineering.jpg", "Funding, Guidance, Resources", "MU College of Engineering", "https://engineering.missouri.edu/", "engineering.missouri.edu");
-CreateSponsor("../Images/Logos/Mizzou-logo.png", "Funding, Validation, Resources", "MU Organizational Resource Group", "https://getinvolved.missouri.edu/student-organizations/", "getinvolved.missouri.edu/student-organizations");
-CreateSponsor("../Images/Logos/hitec.png", "Electronics", "HiTec", "https://hitecrcd.com/", "hitecrcd.com")
-CreateSponsor("../Images/Logos/SolidWorks-Logo.png", "Software", "SolidWorks", "https://www.solidworks.com/", "solidworks.com");
-CreateSponsor("../Images/Logos/MathWorks-Logo.jpeg", "Software", "MathWorks", "https://www.mathworks.com/", "mathworks.com");
-CreateSponsor("../Images/Logos/APC-logo.webp", "Resources", "APC Propellers", "https://www.apcprop.com/", "apcprop.com");
-CreateSponsor("../Images/Logos/Scorpion-Power-System-Logo.jpeg", "Discounts", "Scorpion Power System", "https://www.scorpionsystem.com/", "scorpionsystem.com");
-CreateSponsor("../Images/Logos/Simnet.png", "Software", "SIMNET Designer", "https://www.simnet.aero/designer", "simnet.aero/designer");
-CreateSponsor("../Images/Logos/Ansys-logo.jpg", "Software", "ANSYS", "https://www.ansys.com/", "ansys.com");
-CreateSponsor("../Images/Logos/rock_west_composites_logo.jpeg", "Discounts", "Rock West Composites", "https://www.rockwestcomposites.com/", "rockwestcomposites.com");
-
-// CreateSponsor("../Images/Logos/(Image location goes here)", "What they gave", "Name", "Actual Link", "Display Link");
+// Sponsors are stored in ../data.json under "sponsors". Each entry maps to
+// CreateSponsor(image, supplies, name, link, linkName).
+fetch("../data.json")
+    .then(function (response) { return response.json(); })
+    .then(function (data) {
+        for (var i = 0; i < data.sponsors.length; i++) {
+            var s = data.sponsors[i];
+            CreateSponsor(s.image, s.supplies, s.name, s.link, s.linkName);
+        }
+    });

@@ -57,10 +57,16 @@ var AddProposal = function (FileName, IdYear, Ranking) {
       }); 
 }
 
-// AddProposal("2025-2026 Proposal", "2025-2026", "Ranking: N/A");
-AddProposal("2024-2025 Proposal", "2024-2025", "Ranking: 60 / 159");
-AddProposal("2023-2024 Proposal", "2023-2024", "Ranking: 2 / 148");
-AddProposal("2022-2023 Proposal", "2022-2023", "Ranking: 38 / 135");
+// Proposals are stored in ../data.json under "proposals". The display name is
+// always "<idYear> Proposal", so it is generated here from idYear.
+fetch("../data.json")
+    .then(function (response) { return response.json(); })
+    .then(function (data) {
+        for (var i = 0; i < data.proposals.length; i++) {
+            var p = data.proposals[i];
+            AddProposal(p.idYear + " Proposal", p.idYear, p.ranking);
+        }
+    });
 
 
 // var Image1 = document.getElementById("image1");

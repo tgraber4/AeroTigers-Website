@@ -1,18 +1,13 @@
-var sections = [];
 /*
 Questions:
 1.) What is your favorite part of AeroTigers?
 2.) What are your plans after college?
 */
 
-
-// for a single ' use \'
-sections.push(["Lead Engineers", "Two Lead Engineers supervise and manage the project by creating timetables, integrating the work of the three teams, acquiring funding, recruiting new members, and leading general body meetings. They act both as design experts and project managers. These lead engineers also represent the team to the University and the public as president and vice president.", [["President", "../Images/People/Aidan.jpg", "Aidan Chastain", "Senior", "Hello, I\'m a Mechanical Engineering major with minors in Math and Aerospace Engineering. My favorite part of AeroTigers is the meetings where we decide as a group what designs we want to try, and everyone gives their thoughts and ideas! After this year, I will be pursing a career as a Manufacturing Engineer for Boeing in St. Louis."], ["Vice President", "../Images/People/Bryce.jpg", "Bryce Taylor", "Senior", "Hello, I\'m a Mechanical Engineering major with a minor in Mathematics. My favorite part of AeroTigers is working with like-minded engineers to design and build an aircraft. After this year, I hope to work in the aerospace manufacturing industry."]]]);
-sections.push(["Electronics", "The Electronics team is responsible for the design, testing, and validation of the propulsion, control, and energy storage systems. They are subject matter experts in selecting and optimizing critical components of the aircraft, including the motor, batteries, electronic speed controllers, servos, and receivers.", [["Team Lead", "../Images/People/Michael.jpg", "Michael Mischkot", "Graduate", "Hello! I am an Electrical Engineering and Computer Engineering major. My favorite part of AeroTigers is getting to work through challenges and setbacks and see our plane progress over time to a successful design. After this year, I will be pursuing a career in flight data recording systems and circuit card troubleshooting for fighter aircraft at Boeing - St. Louis."]]])
-sections.push(["Aeronautics", "The Aeronautics team is responsible for the preliminary sizing, planform design, and aerodynamic analysis of the aircraft, which are critical to the optimization of mission deliverables. This includes XFLR5 analysis, static and dynamic stability analysis, computational fluid dynamics, and standard aeronautical design calculations.", [["Team Lead", "../Images/People/Aidan.jpg", "Aidan Chastain", "Senior", "Hello, I\'m a Mechanical Engineering major with minors in Math and Aerospace Engineering. My favorite part of AeroTigers is the meetings where we decide as a group what designs we want to try, and everyone gives their thoughts and ideas! After this year, I will be pursing a career as a Manufacturing Engineer for Boeing in St. Louis."]]]);
-sections.push(["Mechanical", "The Mechanical team is responsible for the design, SolidWorks modeling, and implementation of aircraft structures and mechanisms. They are subject matter experts in the design and analysis of mechanical components, DFAM (design for additive manufacturing), and manufacturing methods.", [["Team Lead", "../Images/People/Bryce.jpg", "Bryce Taylor", "Senior", "Hello, I\'m a Mechanical Engineering major with a minor in Mathematics. My favorite part of AeroTigers is working with like-minded engineers to design and build an aircraft. After this year, I hope to work in the aerospace manufacturing industry."]]]);
-sections.push(["Administration", "The Administration team is responsible for event planning, outreach, and managing technical documentation, which are critical to competition technical reports. This includes outreaching to both university students and company outreach, in addition to other miscellaneous admin tasks. ", [["Team Lead", "../Images/People/Tyler_Graber.jpg", "Tyler Graber", "Junior", "Hello, I\'m a Computer Science major with a minor in Cybersecurity. My favorite part of AeroTigers is being able to collaborate with people in a variety of different fields and see all these unique ideas come together to make a functioning, flyable plane. My current goal is to get an internship doing software development at an aviation company."]]])
-sections.push(["Missions", "The Missions team is responsible for maintaining and setting up the flight simulator, developing MATLAB software, and integrating mission objectives into the overall aircraft design. This includes designing and improving mission components and managing the 3D printing process.", [["Team Lead", "../Images/People/Joey.jpg", "Joey Tietze", "Sophomore", "Hello, I\'m a Mechanical Engineering major with a minor in Aerospace Engineering. My favorite part of AeroTigers is the community and the problem-solving required to make something fly. My current goal is to apply for internships for 2026."]]])
+// people and team sections are loaded from ../data.json (see the fetch below).
+// Each team member entry is normalized to [role, peopleIndex].
+var people = [];
+var sections = [];
 
 var teamleadlist = []; 
 var createTeamLead = function (sectitle, secimage, secname, secyear, secdesc) {
@@ -69,7 +64,8 @@ var createSection = function (i) {
     var sectionname = sections[i][0];
     var sectiondesc = sections[i][1];
     for (var k = 0; k < sections[i][2].length; k++) {
-        createTeamLead(sections[i][2][k][0], sections[i][2][k][1], sections[i][2][k][2], sections[i][2][k][3], sections[i][2][k][4]);
+        var person = people[sections[i][2][k][1]];
+        createTeamLead(sections[i][2][k][0], person.image, person.name, person.year, person.desc);
     }
     const section2 = document.createElement("section");
         
@@ -125,16 +121,25 @@ var createSection = function (i) {
     adder.appendChild(div3);
     mainteamnum++;
 }
-for (var j = 0; j < sections.length; j++) {
-   createSection(j);
-}
 var TurnDisplaysOff = function () {
     for (var i = 2; i < mainteamnum; i++) {
         var mainteam = document.getElementById("mainteam" + i);
         mainteam.style.display = "none";
     }
 }
-TurnDisplaysOff();
+
+fetch("../data.json")
+    .then(function (response) { return response.json(); })
+    .then(function (data) {
+        people = data.people;
+        sections = data.teamSections.map(function (s) {
+            return [s.name, s.description, s.members.map(function (m) { return [m.role, m.person]; })];
+        });
+        for (var j = 0; j < sections.length; j++) {
+            createSection(j);
+        }
+        TurnDisplaysOff();
+    });
 
 var TeamSelect = function (num) {
     for (var i = 1; i < mainteamnum; i++) {

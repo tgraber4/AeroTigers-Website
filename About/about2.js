@@ -16,21 +16,15 @@ var adder = function (year, president, vicepres, teams, prop, report, dbf, updat
 /*
 ---------------------- Add to Past Competitions Here ----------------------
 
- (-) Add to the top of the list (look at how the years descend)
-*/ 
+ (-) Past competitions are now stored in ../data.json under "pastCompetitions".
+     Add new entries to the top of that array (years descend). Each entry maps
+     to adder(year, president, vicepres, teams, prop, report, dbf, updates).
+     Put "N/A" for updates if there are none.
+*/
 
-
-// adder("year", "president", "vice president", "list of team leads", "proposal score", "report score", "fly-off score", "list of updates(if any)") 
-// - put "N/A" if no updates
-
-adder("2024 - 2025", "Michael Mischkot", "Ryan Carlson", ["Aidan Chastain", "Tyler Graber"], "60th / 159", "69th / 111", "85th / 96", "N/A");
-adder("2023 - 2024", "Graham Bond", "Luke Sanders", ["Logan Frommelt", "Michael Mischkot", "Landon Toler"], "2nd / 149", "10th / 107", "65th / 93", "Mizzou AeroTigers Co. founded as a 501(c)(3) nonprofit corporation");
-adder("2022 - 2023", "Landon Toler", "Lane Atchison", ["Graham Bond", "Sam Janavicius", "Joe Jenner", "Sam Kaplan", "Luke Sanders"], "38th / 135", "88th / 110", "63rd / 81", ["AeroTigers founded as a Recognized Student Organization.", "Recognized as a finalist in \"Best New Student Organization\" by the Organizational Resource Group."]);
-
-var pages = Math.ceil((dictlist.length + 1) / 2);
+var pages;
 var currentpage = 1;
 var pager = document.getElementById("pager");
-pager.innerHTML = currentpage + " / " + pages;
 
 var createp = function (text, item) {
     const p6 = document.createElement("p");
@@ -424,7 +418,17 @@ var Remover = function () {
     }
     currelem = [];
 }
-loadpage();
+fetch("../data.json")
+    .then(function (response) { return response.json(); })
+    .then(function (data) {
+        for (var i = 0; i < data.pastCompetitions.length; i++) {
+            var c = data.pastCompetitions[i];
+            adder(c.year, c.president, c.vicepres, c.teams, c.prop, c.report, c.dbf, c.updates);
+        }
+        pages = Math.ceil((dictlist.length + 1) / 2);
+        pager.innerHTML = currentpage + " / " + pages;
+        loadpage();
+    });
 var Left = function () {
     if (currentpage > 1) {
         Remover();

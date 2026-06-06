@@ -1,0 +1,240 @@
+{
+  "donateLink": "https://mizzougivedirect.missouri.edu/fund.aspx?item_id=853",
+  "donateText": "Donate through Mizzou GiveDirect!",
+  "photoTypes": ["jpg", "png", "jpeg", "webp"],
+  "homeContent": [
+    {
+      "title": "Test Flight #9",
+      "description": "After over 8 test flights and reimplementations of our design, check out one of our successful takeoffs of 2024!",
+      "src": "./Videos/TakeOff1-2024.mp4",
+      "type": "video"
+    }
+  ],
+  "people": [
+    {
+      "image": "../Images/People/Aidan.jpg",
+      "name": "Aidan Chastain",
+      "year": "Senior",
+      "desc": "Hello, I'm a Mechanical Engineering major with minors in Math and Aerospace Engineering. My favorite part of AeroTigers is the meetings where we decide as a group what designs we want to try, and everyone gives their thoughts and ideas! After this year, I will be pursing a career as a Manufacturing Engineer for Boeing in St. Louis."
+    },
+    {
+      "image": "../Images/People/Bryce.jpg",
+      "name": "Bryce Taylor",
+      "year": "Senior",
+      "desc": "Hello, I'm a Mechanical Engineering major with a minor in Mathematics. My favorite part of AeroTigers is working with like-minded engineers to design and build an aircraft. After this year, I hope to work in the aerospace manufacturing industry."
+    },
+    {
+      "image": "../Images/People/Michael.jpg",
+      "name": "Michael Mischkot",
+      "year": "Graduate",
+      "desc": "Hello! I am an Electrical Engineering and Computer Engineering major. My favorite part of AeroTigers is getting to work through challenges and setbacks and see our plane progress over time to a successful design. After this year, I will be pursuing a career in flight data recording systems and circuit card troubleshooting for fighter aircraft at Boeing - St. Louis."
+    },
+    {
+      "image": "../Images/People/Tyler_Graber.jpg",
+      "name": "Tyler Graber",
+      "year": "Junior",
+      "desc": "Hello, I'm a Computer Science major with a minor in Cybersecurity. My favorite part of AeroTigers is being able to collaborate with people in a variety of different fields and see all these unique ideas come together to make a functioning, flyable plane. My current goal is to get an internship doing software development at an aviation company."
+    },
+    {
+      "image": "../Images/People/Joey.jpg",
+      "name": "Joey Tietze",
+      "year": "Sophomore",
+      "desc": "Hello, I'm a Mechanical Engineering major with a minor in Aerospace Engineering. My favorite part of AeroTigers is the community and the problem-solving required to make something fly. My current goal is to apply for internships for 2026."
+    }
+  ],
+  "teamSections": [
+    {
+      "name": "Lead Engineers",
+      "description": "Two Lead Engineers supervise and manage the project by creating timetables, integrating the work of the three teams, acquiring funding, recruiting new members, and leading general body meetings. They act both as design experts and project managers. These lead engineers also represent the team to the University and the public as president and vice president.",
+      "members": [
+        { "role": "President", "person": 0 },
+        { "role": "Vice President", "person": 1 }
+      ]
+    },
+    {
+      "name": "Electronics",
+      "description": "The Electronics team is responsible for the design, testing, and validation of the propulsion, control, and energy storage systems. They are subject matter experts in selecting and optimizing critical components of the aircraft, including the motor, batteries, electronic speed controllers, servos, and receivers.",
+      "members": [
+        { "role": "Team Lead", "person": 2 }
+      ]
+    },
+    {
+      "name": "Aeronautics",
+      "description": "The Aeronautics team is responsible for the preliminary sizing, planform design, and aerodynamic analysis of the aircraft, which are critical to the optimization of mission deliverables. This includes XFLR5 analysis, static and dynamic stability analysis, computational fluid dynamics, and standard aeronautical design calculations.",
+      "members": [
+        { "role": "Team Lead", "person": 0 }
+      ]
+    },
+    {
+      "name": "Mechanical",
+      "description": "The Mechanical team is responsible for the design, SolidWorks modeling, and implementation of aircraft structures and mechanisms. They are subject matter experts in the design and analysis of mechanical components, DFAM (design for additive manufacturing), and manufacturing methods.",
+      "members": [
+        { "role": "Team Lead", "person": 1 }
+      ]
+    },
+    {
+      "name": "Administration",
+      "description": "The Administration team is responsible for event planning, outreach, and managing technical documentation, which are critical to competition technical reports. This includes outreaching to both university students and company outreach, in addition to other miscellaneous admin tasks. ",
+      "members": [
+        { "role": "Team Lead", "person": 3 }
+      ]
+    },
+    {
+      "name": "Missions",
+      "description": "The Missions team is responsible for maintaining and setting up the flight simulator, developing MATLAB software, and integrating mission objectives into the overall aircraft design. This includes designing and improving mission components and managing the 3D printing process.",
+      "members": [
+        { "role": "Team Lead", "person": 4 }
+      ]
+    }
+  ],
+  "pastCompetitions": [
+    {
+      "year": "2024 - 2025",
+      "president": "Michael Mischkot",
+      "vicepres": "Ryan Carlson",
+      "teams": ["Aidan Chastain", "Tyler Graber"],
+      "prop": "60th / 159",
+      "report": "69th / 111",
+      "dbf": "85th / 96",
+      "updates": "N/A"
+    },
+    {
+      "year": "2023 - 2024",
+      "president": "Graham Bond",
+      "vicepres": "Luke Sanders",
+      "teams": ["Logan Frommelt", "Michael Mischkot", "Landon Toler"],
+      "prop": "2nd / 149",
+      "report": "10th / 107",
+      "dbf": "65th / 93",
+      "updates": "Mizzou AeroTigers Co. founded as a 501(c)(3) nonprofit corporation"
+    },
+    {
+      "year": "2022 - 2023",
+      "president": "Landon Toler",
+      "vicepres": "Lane Atchison",
+      "teams": ["Graham Bond", "Sam Janavicius", "Joe Jenner", "Sam Kaplan", "Luke Sanders"],
+      "prop": "38th / 135",
+      "report": "88th / 110",
+      "dbf": "63rd / 81",
+      "updates": [
+        "AeroTigers founded as a Recognized Student Organization.",
+        "Recognized as a finalist in \"Best New Student Organization\" by the Organizational Resource Group."
+      ]
+    }
+  ],
+  "sponsors": [
+    {
+      "image": "../Images/Logos/Mizzou_Engineering.jpg",
+      "supplies": "Funding, Guidance, Resources",
+      "name": "MU College of Engineering",
+      "link": "https://engineering.missouri.edu/",
+      "linkName": "engineering.missouri.edu"
+    },
+    {
+      "image": "../Images/Logos/Mizzou-logo.png",
+      "supplies": "Funding, Validation, Resources",
+      "name": "MU Organizational Resource Group",
+      "link": "https://getinvolved.missouri.edu/student-organizations/",
+      "linkName": "getinvolved.missouri.edu/student-organizations"
+    },
+    {
+      "image": "../Images/Logos/hitec.png",
+      "supplies": "Electronics",
+      "name": "HiTec",
+      "link": "https://hitecrcd.com/",
+      "linkName": "hitecrcd.com"
+    },
+    {
+      "image": "../Images/Logos/SolidWorks-Logo.png",
+      "supplies": "Software",
+      "name": "SolidWorks",
+      "link": "https://www.solidworks.com/",
+      "linkName": "solidworks.com"
+    },
+    {
+      "image": "../Images/Logos/MathWorks-Logo.jpeg",
+      "supplies": "Software",
+      "name": "MathWorks",
+      "link": "https://www.mathworks.com/",
+      "linkName": "mathworks.com"
+    },
+    {
+      "image": "../Images/Logos/APC-logo.webp",
+      "supplies": "Resources",
+      "name": "APC Propellers",
+      "link": "https://www.apcprop.com/",
+      "linkName": "apcprop.com"
+    },
+    {
+      "image": "../Images/Logos/Scorpion-Power-System-Logo.jpeg",
+      "supplies": "Discounts",
+      "name": "Scorpion Power System",
+      "link": "https://www.scorpionsystem.com/",
+      "linkName": "scorpionsystem.com"
+    },
+    {
+      "image": "../Images/Logos/Simnet.png",
+      "supplies": "Software",
+      "name": "SIMNET Designer",
+      "link": "https://www.simnet.aero/designer",
+      "linkName": "simnet.aero/designer"
+    },
+    {
+      "image": "../Images/Logos/Ansys-logo.jpg",
+      "supplies": "Software",
+      "name": "ANSYS",
+      "link": "https://www.ansys.com/",
+      "linkName": "ansys.com"
+    },
+    {
+      "image": "../Images/Logos/rock_west_composites_logo.jpeg",
+      "supplies": "Discounts",
+      "name": "Rock West Composites",
+      "link": "https://www.rockwestcomposites.com/",
+      "linkName": "rockwestcomposites.com"
+    }
+  ],
+  "proposals": [
+    { "idYear": "2024-2025", "ranking": "Ranking: 60 / 159" },
+    { "idYear": "2023-2024", "ranking": "Ranking: 2 / 148" },
+    { "idYear": "2022-2023", "ranking": "Ranking: 38 / 135" }
+  ],
+  "photos": [
+    {
+      "year": "2024-2025",
+      "normalCount": 10,
+      "competitionCount": 9,
+      "videos": [
+        {
+          "title": "Test Flight",
+          "description": "Check out our first flight attempt for our 2024-2025 Plane!",
+          "src": "https://www.youtube.com/embed/sa56r8oEJpA?si=7Zou6wSZUh_eXJOq"
+        }
+      ]
+    },
+    {
+      "year": "2023-2024",
+      "normalCount": 9,
+      "competitionCount": 10,
+      "videos": [
+        {
+          "title": "Test Flight",
+          "description": "Check out this cool video of our 2023-2024 Plane!",
+          "src": "https://www.youtube.com/embed/0XxYHCxHvfU?si=J-dg1tc7vAyeLwsZ"
+        }
+      ]
+    },
+    {
+      "year": "2022-2023",
+      "normalCount": 9,
+      "competitionCount": 6,
+      "videos": [
+        {
+          "title": "Test Flight",
+          "description": "Check out this cool video of our 2022-2023 Plane!",
+          "src": "../Videos/Old-Testflight-1.mp4"
+        }
+      ]
+    }
+  ]
+}

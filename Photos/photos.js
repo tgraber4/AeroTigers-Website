@@ -1,25 +1,20 @@
 var photosdata = [];
 
-/* 
------ Adding Instructions -----
-var insertVideo# = [[]]
-photosdata.push([(Year), (# of normal photos), (name of video variable), (# of competition photos)]);
+/*
+----- Adding Photo/Video Data -----
+Photo and video data is stored in ../data.json under "photos". Each entry is:
+  { year, normalCount, competitionCount, videos: [ { title, description, src } ] }
+It is normalized (in the fetch at the bottom of this file) into the
+[year, normalCount, videos[], competitionCount] shape this script expects.
 */
 
-var insertVideos3 = [["Test Flight",  "Check out our first flight attempt for our 2024-2025 Plane!", "https://www.youtube.com/embed/sa56r8oEJpA?si=7Zou6wSZUh_eXJOq"]];
-photosdata.push(["2024-2025", 10, insertVideos3, 9]);
-
-var insertVideos2 = [["Test Flight", "Check out this cool video of our 2023-2024 Plane!", "https://www.youtube.com/embed/0XxYHCxHvfU?si=J-dg1tc7vAyeLwsZ"]];
-photosdata.push(["2023-2024", 9, insertVideos2, 10]);
-var insertVideos1 = [["Test Flight", "Check out this cool video of our 2022-2023 Plane!", "../Videos/Old-Testflight-1.mp4"]];
-photosdata.push(["2022-2023", 9, insertVideos1, 6]);
 
 
 
 
+var photoTypes = []; // loaded from ../data.json ("photoTypes")
 
-var photoTypes = ["jpg", "png", "jpeg", "webp"]; // add to this if any more photo file types are found
-
+function initPhotos() {
 var currentFileList = {}; // Contains the file types for each image for that year
 var enlargeUsed = 0;
 
@@ -462,3 +457,19 @@ function closeAllSelect(elmnt) {
   }
 }
 document.addEventListener("click", closeAllSelect);
+}
+
+fetch("../data.json")
+  .then(function (response) { return response.json(); })
+  .then(function (data) {
+    photosdata = data.photos.map(function (p) {
+      return [
+        p.year,
+        p.normalCount,
+        p.videos.map(function (v) { return [v.title, v.description, v.src]; }),
+        p.competitionCount
+      ];
+    });
+    photoTypes = data.photoTypes;
+    initPhotos();
+  });

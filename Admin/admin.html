@@ -1,13 +1,107 @@
 <html>
 <head>
+    <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="../Images/aerotigers-logo.webp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroTigers Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    <link rel="stylesheet" href="admin.css">
-    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
-    <p>test</p>
-    <script src="admin.js"></script>
+    <header class="admin-header">
+        <div class="header-text">
+            <h1>AeroTigers Admin Panel</h1>
+            <p class="status" id="status">Loading data…</p>
+        </div>
+        <button class="settings-btn" id="settings-btn" title="Settings" aria-label="Settings">⚙</button>
+    </header>
 
+    <div class="modal-overlay" id="settings-modal" hidden>
+        <div class="modal">
+            <div class="modal-head">
+                <h2>Settings</h2>
+                <button class="modal-close" id="settings-close" aria-label="Close">✕</button>
+            </div>
+            <label class="field">
+                <span>Data source</span>
+                <select id="setting-import">
+                    <option value="default">Auto-load from existing data.json</option>
+                    <option value="allow">Let me paste my own JSON</option>
+                </select>
+            </label>
+            <p class="setting-hint">Auto-load uses the site's current data.json. Choosing
+               "Let me paste my own JSON" adds an Import tab where you can paste a data.json
+               to edit instead.</p>
+        </div>
+    </div>
+
+    <nav class="tabs" id="tabs">
+        <button data-tab="people" class="active">People</button>
+        <button data-tab="teams">Teams</button>
+        <button data-tab="sponsors">Sponsors</button>
+        <button data-tab="photos">Photos</button>
+        <button data-tab="files">Files</button>
+        <button data-tab="home">Home Page</button>
+        <button data-tab="history">Past Competitions</button>
+        <button data-tab="export">Export</button>
+        <button data-tab="import" id="tab-btn-import" hidden>Import</button>
+    </nav>
+
+    <main>
+        <section class="tab-panel active" id="tab-people">
+            <div class="panel-head"><h2>People</h2><button class="add" id="add-person">+ Add person</button></div>
+            <div class="list" id="people-list"></div>
+        </section>
+
+        <section class="tab-panel" id="tab-teams">
+            <div class="panel-head"><h2>Teams</h2><button class="add" id="add-team">+ Add team</button></div>
+            <div class="list" id="teams-list"></div>
+        </section>
+
+        <section class="tab-panel" id="tab-sponsors">
+            <div class="panel-head"><h2>Sponsors</h2><button class="add" id="add-sponsor">+ Add sponsor</button></div>
+            <div class="card" id="donate-card"></div>
+            <div class="list" id="sponsors-list"></div>
+        </section>
+
+        <section class="tab-panel" id="tab-photos">
+            <div class="panel-head"><h2>Photos</h2><button class="add" id="add-photo-year">+ Add year</button></div>
+            <div class="list" id="photos-list"></div>
+        </section>
+
+        <section class="tab-panel" id="tab-files">
+            <div class="panel-head"><h2>Files (Proposals)</h2><button class="add" id="add-proposal">+ Add proposal</button></div>
+            <div class="list" id="proposals-list"></div>
+        </section>
+
+        <section class="tab-panel" id="tab-home">
+            <div class="panel-head"><h2>Home Page Widgets</h2><button class="add" id="add-home">+ Add widget</button></div>
+            <div class="list" id="home-list"></div>
+        </section>
+
+        <section class="tab-panel" id="tab-history">
+            <div class="panel-head"><h2>Past Competitions</h2><button class="add" id="add-history">+ Add competition</button></div>
+            <div class="list" id="history-list"></div>
+        </section>
+
+        <section class="tab-panel" id="tab-export">
+            <div class="panel-head"><h2>Export</h2></div>
+            <p>Copy the text below and paste it into <code>data.json</code> on your host
+               (replacing the whole file).</p>
+            <div class="button-row">
+                <button class="add" id="copy">Copy to clipboard</button>
+            </div>
+            <textarea id="output" spellcheck="false"></textarea>
+        </section>
+
+        <section class="tab-panel" id="tab-import">
+            <div class="panel-head"><h2>Import</h2></div>
+            <p>Paste your current <code>data.json</code> here and click Load to keep editing.</p>
+            <button class="add" id="import-btn">Load pasted JSON</button>
+            <textarea id="import" spellcheck="false" placeholder="Paste data.json contents here…"></textarea>
+        </section>
+    </main>
+
+    <script src="lib/Sortable.min.js"></script>
+    <script src="admin.js"></script>
 </body>
 </html>
