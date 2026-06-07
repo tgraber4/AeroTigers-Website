@@ -1,13 +1,19 @@
 {
-  "donateLink": "https://mizzougivedirect.missouri.edu/fund.aspx?item_id=853",
-  "donateText": "Donate through Mizzou GiveDirect!",
-  "photoTypes": ["jpg", "png", "jpeg", "webp"],
+  "donateLink": "https://formizzou.missouri.edu/campaigns/63884/donations/new?designation=engineeringdeansfundforexcellence",
+  "donateText": "Donation Link",
+  "instructions-file": "../PDFs/donation-instructions.pdf",
+  "photoTypes": [
+    "jpg",
+    "png",
+    "jpeg",
+    "webp"
+  ],
   "homeContent": [
     {
-      "title": "Test Flight #9",
-      "description": "After over 8 test flights and reimplementations of our design, check out one of our successful takeoffs of 2024!",
-      "src": "./Videos/TakeOff1-2024.mp4",
-      "type": "video"
+      "title": "BENGAL Banner Flight",
+      "description": "From our 2025-2026 season, BENGAL is gracefully flying with a 60 in. banner. ",
+      "src": "../Images/2025-2026 Photos/Normal/1.jpg",
+      "type": "image"
     }
   ],
   "people": [
@@ -47,52 +53,90 @@
       "name": "Lead Engineers",
       "description": "Two Lead Engineers supervise and manage the project by creating timetables, integrating the work of the three teams, acquiring funding, recruiting new members, and leading general body meetings. They act both as design experts and project managers. These lead engineers also represent the team to the University and the public as president and vice president.",
       "members": [
-        { "role": "President", "person": 0 },
-        { "role": "Vice President", "person": 1 }
+        {
+          "role": "President",
+          "person": 0
+        },
+        {
+          "role": "Vice President",
+          "person": 1
+        }
       ]
     },
     {
       "name": "Electronics",
       "description": "The Electronics team is responsible for the design, testing, and validation of the propulsion, control, and energy storage systems. They are subject matter experts in selecting and optimizing critical components of the aircraft, including the motor, batteries, electronic speed controllers, servos, and receivers.",
       "members": [
-        { "role": "Team Lead", "person": 2 }
+        {
+          "role": "Team Lead",
+          "person": 2
+        }
       ]
     },
     {
       "name": "Aeronautics",
       "description": "The Aeronautics team is responsible for the preliminary sizing, planform design, and aerodynamic analysis of the aircraft, which are critical to the optimization of mission deliverables. This includes XFLR5 analysis, static and dynamic stability analysis, computational fluid dynamics, and standard aeronautical design calculations.",
       "members": [
-        { "role": "Team Lead", "person": 0 }
+        {
+          "role": "Team Lead",
+          "person": 0
+        }
       ]
     },
     {
       "name": "Mechanical",
       "description": "The Mechanical team is responsible for the design, SolidWorks modeling, and implementation of aircraft structures and mechanisms. They are subject matter experts in the design and analysis of mechanical components, DFAM (design for additive manufacturing), and manufacturing methods.",
       "members": [
-        { "role": "Team Lead", "person": 1 }
+        {
+          "role": "Team Lead",
+          "person": 1
+        }
       ]
     },
     {
       "name": "Administration",
       "description": "The Administration team is responsible for event planning, outreach, and managing technical documentation, which are critical to competition technical reports. This includes outreaching to both university students and company outreach, in addition to other miscellaneous admin tasks. ",
       "members": [
-        { "role": "Team Lead", "person": 3 }
+        {
+          "role": "Team Lead",
+          "person": 3
+        }
       ]
     },
     {
       "name": "Missions",
       "description": "The Missions team is responsible for maintaining and setting up the flight simulator, developing MATLAB software, and integrating mission objectives into the overall aircraft design. This includes designing and improving mission components and managing the 3D printing process.",
       "members": [
-        { "role": "Team Lead", "person": 4 }
+        {
+          "role": "Team Lead",
+          "person": 4
+        }
       ]
     }
   ],
   "pastCompetitions": [
     {
+      "year": "2025 - 2026",
+      "president": "Aidan Chastain",
+      "vicepres": "Bryce Taylor",
+      "officers": [
+        "Tyler Graber",
+        "Michael Mischkot",
+        "Joey Tietze"
+      ],
+      "prop": "68th / 175",
+      "report": "20th / 98",
+      "dbf": "57th / 98",
+      "updates": "N/A"
+    },
+    {
       "year": "2024 - 2025",
       "president": "Michael Mischkot",
       "vicepres": "Ryan Carlson",
-      "teams": ["Aidan Chastain", "Tyler Graber"],
+      "officers": [
+        "Aidan Chastain",
+        "Tyler Graber"
+      ],
       "prop": "60th / 159",
       "report": "69th / 111",
       "dbf": "85th / 96",
@@ -102,7 +146,11 @@
       "year": "2023 - 2024",
       "president": "Graham Bond",
       "vicepres": "Luke Sanders",
-      "teams": ["Logan Frommelt", "Michael Mischkot", "Landon Toler"],
+      "officers": [
+        "Logan Frommelt",
+        "Michael Mischkot",
+        "Landon Toler"
+      ],
       "prop": "2nd / 149",
       "report": "10th / 107",
       "dbf": "65th / 93",
@@ -112,7 +160,13 @@
       "year": "2022 - 2023",
       "president": "Landon Toler",
       "vicepres": "Lane Atchison",
-      "teams": ["Graham Bond", "Sam Janavicius", "Joe Jenner", "Sam Kaplan", "Luke Sanders"],
+      "officers": [
+        "Graham Bond",
+        "Sam Janavicius",
+        "Joe Jenner",
+        "Sam Kaplan",
+        "Luke Sanders"
+      ],
       "prop": "38th / 135",
       "report": "88th / 110",
       "dbf": "63rd / 81",
@@ -143,6 +197,13 @@
       "name": "HiTec",
       "link": "https://hitecrcd.com/",
       "linkName": "hitecrcd.com"
+    },
+    {
+      "image": "../Images/Logos/MMRCA.jpg",
+      "supplies": "Flying Field, Support, Advice",
+      "name": "Mid-Missouri Radio Control Association",
+      "link": "https://www.mmrca.org/",
+      "linkName": "www.mmrca.org"
     },
     {
       "image": "../Images/Logos/SolidWorks-Logo.png",
@@ -195,11 +256,36 @@
     }
   ],
   "proposals": [
-    { "idYear": "2024-2025", "ranking": "Ranking: 60 / 159" },
-    { "idYear": "2023-2024", "ranking": "Ranking: 2 / 148" },
-    { "idYear": "2022-2023", "ranking": "Ranking: 38 / 135" }
+    {
+      "idYear": "2025-2026",
+      "ranking": "Ranking: 68 / 175"
+    },
+    {
+      "idYear": "2024-2025",
+      "ranking": "Ranking: 60 / 159"
+    },
+    {
+      "idYear": "2023-2024",
+      "ranking": "Ranking: 2 / 148"
+    },
+    {
+      "idYear": "2022-2023",
+      "ranking": "Ranking: 38 / 135"
+    }
   ],
   "photos": [
+    {
+      "year": "2025-2026",
+      "normalCount": 8,
+      "competitionCount": 9,
+      "videos": [
+        {
+          "title": "Competition Mission 1 Flight",
+          "description": "BENGAL's Mission 1 Flight at the 30th AIAA DBF competition. ",
+          "src": "https://www.youtube.com/embed/IUJ-kwRfrr4?si=RQVPIUlDao1wc_8q"
+        }
+      ]
+    },
     {
       "year": "2024-2025",
       "normalCount": 10,
@@ -227,7 +313,7 @@
     {
       "year": "2022-2023",
       "normalCount": 9,
-      "competitionCount": 6,
+      "competitionCount": 4,
       "videos": [
         {
           "title": "Test Flight",

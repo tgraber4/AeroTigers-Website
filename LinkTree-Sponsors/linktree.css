@@ -45,7 +45,7 @@ p {
     background-color: white;
     box-shadow: 0 0 20px 0px rgba(112, 112, 112, 0.2);
     border-radius: 4px;
-    margin: auto;
+    margin: 0 auto 20px;
     width: 50%;
     height: 50px;
     display: flex;

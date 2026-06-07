@@ -1,12 +1,12 @@
 
 var dictlist = [];
 var currelem = [];
-var adder = function (year, president, vicepres, teams, prop, report, dbf, updates) {
+var adder = function (year, president, vicepres, officers, prop, report, dbf, updates) {
     var tempdict = {};
     tempdict["year"] = year;
     tempdict["president"] = president;
     tempdict["vicepres"] = vicepres;
-    tempdict["teams"] = teams;
+    tempdict["officers"] = officers;
     tempdict["prop"] = prop;
     tempdict["report"] = report;
     tempdict["dbf"] = dbf;
@@ -146,7 +146,7 @@ var createItem1 = function (num) {
 
     const p5 = document.createElement("p");
 
-    const node5 = document.createTextNode("Team Leads");
+    const node5 = document.createTextNode("Officers");
 
     p5.appendChild(node5);
 
@@ -190,12 +190,12 @@ var createItem1 = function (num) {
 
     div3.appendChild(p5);
 
-    if (dictlist[num].teams.constructor === Array) {
-        for (var j = 0; j < dictlist[num].teams.length; j++) {
-            createp(dictlist[num].teams[j], div3)
+    if (dictlist[num].officers.constructor === Array) {
+        for (var j = 0; j < dictlist[num].officers.length; j++) {
+            createp(dictlist[num].officers[j], div3)
         }
     } else {
-        createp(dictlist[i].teams, div3)
+        createp(dictlist[num].officers, div3)
     }
 
     div4.appendChild(p9);
@@ -423,7 +423,7 @@ fetch("../data.json")
     .then(function (data) {
         for (var i = 0; i < data.pastCompetitions.length; i++) {
             var c = data.pastCompetitions[i];
-            adder(c.year, c.president, c.vicepres, c.teams, c.prop, c.report, c.dbf, c.updates);
+            adder(c.year, c.president, c.vicepres, c.officers, c.prop, c.report, c.dbf, c.updates);
         }
         pages = Math.ceil((dictlist.length + 1) / 2);
         pager.innerHTML = currentpage + " / " + pages;

@@ -100,7 +100,8 @@ h4 {
 .select-selected:after {
     position: absolute;
     content: "";
-    top: 14px;
+    top: 50%;
+    transform: translateY(-50%) translateY(3px);
     right: 10px;
     width: 0;
     height: 0;
@@ -111,7 +112,7 @@ h4 {
 /* up arrow */
 .select-selected.select-arrow-active:after {
     border-color: transparent transparent rgba(56, 56, 56, 0.384) transparent;
-    top: 7px;
+    transform: translateY(-50%) translateY(-3px);
 }
 
 /*style the items (options), including the selected item:*/

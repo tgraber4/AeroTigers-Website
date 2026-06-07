@@ -19,8 +19,23 @@ var MEDIA_TYPES = ["video", "image"];
 
 // ---------- small DOM helpers ----------
 
+// Normalize a media path the user pasted from the project root into the
+// "../<root-relative>" form the static pages need. Accepts either slash style
+// (/ or \) and an optional leading "/", "./", or "../". Full URLs (YouTube
+// embeds, etc.) and data: URIs are left untouched.
+function normalizeMediaPath(value) {
+    var v = (value == null ? "" : String(value)).trim();
+    if (v === "") return "";
+    if (/^(https?:)?\/\//i.test(v) || /^data:/i.test(v)) return v;
+    v = v.replace(/\\/g, "/");          // backslashes -> forward slashes
+    v = v.replace(/\/{2,}/g, "/");      // collapse duplicate slashes
+    v = v.replace(/^(\.\.?\/|\/)+/, ""); // strip leading ./ ../ or /
+    return "../" + v;
+}
+
 // makeInput(value, oninput, opts)
 //   opts.textarea -> <textarea>; opts.options -> <select>; opts.type -> input type
+//   opts.normalizePath -> run paths through normalizeMediaPath on commit
 function makeInput(value, oninput, opts) {
     opts = opts || {};
     var input;
@@ -41,9 +56,11 @@ function makeInput(value, oninput, opts) {
         input.type = opts.type || "text";
         input.value = value == null ? "" : value;
     }
-    var handler = function () { oninput(input.value); };
-    input.addEventListener("input", handler);
-    input.addEventListener("change", handler);
+    input.addEventListener("input", function () { oninput(input.value); });
+    input.addEventListener("change", function () {
+        if (opts.normalizePath) input.value = normalizeMediaPath(input.value);
+        oninput(input.value);
+    });
     return input;
 }
 
@@ -115,7 +132,7 @@ function renderPeople() {
         title.textContent = p.name || "Person " + (i + 1);
         card.appendChild(title);
         card.appendChild(labeled("Name", makeInput(p.name, function (v) { p.name = v; title.textContent = v || "Person " + (i + 1); })));
-        card.appendChild(labeled("Image path", makeInput(p.image, function (v) { p.image = v; })));
+        card.appendChild(labeled("Image path", makeInput(p.image, function (v) { p.image = v; }, { normalizePath: true })));
         card.appendChild(labeled("School level", makeInput(p.year, function (v) { p.year = v; }, { options: LEVELS.map(function (l) { return { value: l, label: l }; }) })));
         card.appendChild(labeled("Description", makeInput(p.desc, function (v) { p.desc = v; }, { textarea: true })));
         card.appendChild(deleteAction(function () { deletePerson(i); }));
@@ -182,6 +199,7 @@ function renderDonate() {
     card.appendChild(h);
     card.appendChild(labeled("Donate link", makeInput(data.donateLink, function (v) { data.donateLink = v; })));
     card.appendChild(labeled("Donate button text", makeInput(data.donateText, function (v) { data.donateText = v; })));
+    card.appendChild(labeled("Donation instructions file path", makeInput(data["instructions-file"], function (v) { data["instructions-file"] = v; }, { normalizePath: true })));
 }
 
 function renderSponsors() {
@@ -198,7 +216,7 @@ function renderSponsors() {
         card.appendChild(labeled("Resources provided", makeInput(s.supplies, function (v) { s.supplies = v; })));
         card.appendChild(labeled("Display link (shown text)", makeInput(s.linkName, function (v) { s.linkName = v; })));
         card.appendChild(labeled("Actual link (href)", makeInput(s.link, function (v) { s.link = v; })));
-        card.appendChild(labeled("Image path", makeInput(s.image, function (v) { s.image = v; })));
+        card.appendChild(labeled("Image path", makeInput(s.image, function (v) { s.image = v; }, { normalizePath: true })));
         card.appendChild(deleteAction(function () {
             if (window.confirm("Delete this sponsor?")) { data.sponsors.splice(i, 1); renderSponsors(); }
         }));
@@ -230,7 +248,7 @@ function renderPhotos() {
             vcard.className = "subcard";
             vcard.appendChild(labeled("Title", makeInput(v.title, function (val) { v.title = val; })));
             vcard.appendChild(labeled("Description", makeInput(v.description, function (val) { v.description = val; }, { textarea: true })));
-            vcard.appendChild(labeled("Video link", makeInput(v.src, function (val) { v.src = val; })));
+            vcard.appendChild(labeled("Video link", makeInput(v.src, function (val) { v.src = val; }, { normalizePath: true })));
             vcard.appendChild(button("Remove showcase", "danger small", function () { yr.videos.splice(vi, 1); renderPhotos(); }));
             vidWrap.appendChild(vcard);
         });
@@ -278,7 +296,7 @@ function renderHome() {
         card.appendChild(labeled("Title", makeInput(w.title, function (v) { w.title = v; title.textContent = v || "Widget " + (i + 1); })));
         card.appendChild(labeled("Description", makeInput(w.description, function (v) { w.description = v; }, { textarea: true })));
         card.appendChild(labeled("Type", makeInput(w.type, function (v) { w.type = v; }, { options: MEDIA_TYPES.map(function (t) { return { value: t, label: t }; }) })));
-        card.appendChild(labeled("Video / image path", makeInput(w.src, function (v) { w.src = v; })));
+        card.appendChild(labeled("Video / image path", makeInput(w.src, function (v) { w.src = v; }, { normalizePath: true })));
         card.appendChild(deleteAction(function () {
             if (window.confirm("Delete this widget?")) { data.homeContent.splice(i, 1); renderHome(); }
         }));
@@ -305,16 +323,16 @@ function renderHistory() {
         var teamWrap = document.createElement("div");
         teamWrap.className = "subsection";
         var th = document.createElement("h4");
-        th.textContent = "Team leads";
+        th.textContent = "Officers";
         teamWrap.appendChild(th);
-        c.teams.forEach(function (name, ti) {
+        c.officers.forEach(function (name, ti) {
             var row = document.createElement("div");
             row.className = "row";
-            row.appendChild(makeInput(name, function (v) { c.teams[ti] = v; }));
-            row.appendChild(button("Remove", "danger small", function () { c.teams.splice(ti, 1); renderHistory(); }));
+            row.appendChild(makeInput(name, function (v) { c.officers[ti] = v; }));
+            row.appendChild(button("Remove", "danger small", function () { c.officers.splice(ti, 1); renderHistory(); }));
             teamWrap.appendChild(row);
         });
-        teamWrap.appendChild(button("+ Add team lead", "small", function () { c.teams.push(""); renderHistory(); }));
+        teamWrap.appendChild(button("+ Add officer", "small", function () { c.officers.push(""); renderHistory(); }));
         card.appendChild(teamWrap);
 
         var upWrap = document.createElement("div");
@@ -389,6 +407,7 @@ function normalize(d) {
     d = d || {};
     if (d.donateLink == null) d.donateLink = "";
     if (d.donateText == null) d.donateText = "";
+    if (d["instructions-file"] == null) d["instructions-file"] = "";
     if (d.photoTypes == null) d.photoTypes = ["jpg", "png", "jpeg", "webp"];
     d.people = d.people || [];
     d.teamSections = d.teamSections || [];
@@ -401,7 +420,7 @@ function normalize(d) {
     d.teamSections.forEach(function (t) { if (!t.members) t.members = []; });
     d.photos.forEach(function (p) { if (!p.videos) p.videos = []; });
     d.pastCompetitions.forEach(function (c) {
-        if (!c.teams) c.teams = [];
+        if (!c.officers) c.officers = [];
         if (c.updates === "N/A" || c.updates == null) c.updates = [];
         else if (!Array.isArray(c.updates)) c.updates = [c.updates];
     });
@@ -457,7 +476,7 @@ document.getElementById("add-home").addEventListener("click", function () {
 });
 document.getElementById("add-history").addEventListener("click", function () {
     // Newest competition goes to the top (matches the descending-year convention).
-    data.pastCompetitions.unshift({ year: "", president: "", vicepres: "", teams: [], prop: "", report: "", dbf: "", updates: [] });
+    data.pastCompetitions.unshift({ year: "", president: "", vicepres: "", officers: [], prop: "", report: "", dbf: "", updates: [] });
     renderHistory();
     flashNew("history-list", 0);
 });
