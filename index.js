@@ -23,53 +23,75 @@ var scollFunction = function () {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 }
 
-// insertContentBlock("Title", "Description", "./path/to/file", "image" or "video")
+// Rows fade in the first time they enter the viewport (or are scrolled past).
+var pendingRows = [];
+var revealRows = function () {
+    for (var i = pendingRows.length - 1; i >= 0; i--) {
+        if (pendingRows[i].getBoundingClientRect().top < window.innerHeight * 0.85) {
+            pendingRows[i].classList.add("visible");
+            pendingRows.splice(i, 1);
+        }
+    }
+};
+window.addEventListener("scroll", revealRows, { passive: true });
+window.addEventListener("resize", revealRows);
+
+// insertContentBlock("Title", "Description", "./path/to/file", "image" or "video", index)
 // For "video", a YouTube embed URL (contains "youtube.com") is rendered in an
 // iframe; any other src is treated as a direct video file (mp4).
-var insertContentBlock = function (title, description, src, type) {
-    var block = document.createElement("div");
-    block.setAttribute("class", "placeholder1");
+// Odd-indexed rows are flipped (media on the right) for a zig-zag layout.
+var insertContentBlock = function (title, description, src, type, index) {
+    var alt = index % 2 === 1;
 
-    var h2 = document.createElement("h2");
-    h2.appendChild(document.createTextNode(title));
-    block.appendChild(h2);
+    var band = document.createElement("section");
+    band.setAttribute("class", "content-band" + (alt ? " alt" : ""));
 
-    var textholder = document.createElement("div");
-    textholder.setAttribute("class", "textholder");
-    var p = document.createElement("p");
-    p.appendChild(document.createTextNode(description));
-    textholder.appendChild(p);
-    block.appendChild(textholder);
+    var row = document.createElement("div");
+    row.setAttribute("class", "content-row" + (alt ? " reverse" : ""));
+    band.appendChild(row);
 
+    var media = document.createElement("div");
+    media.setAttribute("class", "content-media");
     if (type === "image") {
         var img = document.createElement("img");
         img.src = src;
-        block.appendChild(img);
+        img.alt = title;
+        media.appendChild(img);
     } else if (type === "video") {
         if (src.includes("youtube.com")) {
             var iframe = document.createElement("iframe");
-            iframe.width = 600;
-            iframe.height = 380;
             iframe.setAttribute("frameborder", 0);
             iframe.setAttribute("allowfullscreen", true);
             iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
             iframe.src = src;
-            block.appendChild(iframe);
+            media.appendChild(iframe);
         } else {
             var video = document.createElement("video");
-            video.width = 600;
-            video.height = 380;
             video.controls = true;
             var source = document.createElement("source");
             source.src = src;
             source.type = "video/mp4";
             video.appendChild(source);
-            block.appendChild(video);
+            media.appendChild(video);
         }
     }
+    row.appendChild(media);
+
+    var text = document.createElement("div");
+    text.setAttribute("class", "content-text");
+    var h2 = document.createElement("h2");
+    h2.appendChild(document.createTextNode(title));
+    text.appendChild(h2);
+    var p = document.createElement("p");
+    p.appendChild(document.createTextNode(description));
+    text.appendChild(p);
+    row.appendChild(text);
 
     var bottom = document.querySelector(".bottom");
-    bottom.parentNode.insertBefore(block, bottom);
+    bottom.parentNode.insertBefore(band, bottom);
+
+    pendingRows.push(row);
+    revealRows();
 }
 
 
@@ -79,6 +101,6 @@ fetch("./data.json")
     .then(function (data) {
         for (var i = 0; i < data.homeContent.length; i++) {
             var c = data.homeContent[i];
-            insertContentBlock(c.title, c.description, c.src, c.type);
+            insertContentBlock(c.title, c.description, c.src, c.type, i);
         }
     });

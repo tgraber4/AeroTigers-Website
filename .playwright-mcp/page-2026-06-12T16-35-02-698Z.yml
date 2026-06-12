@@ -1,0 +1,45 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - link [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e5]
+      - list [ref=e7]:
+        - text: 
+        - listitem [ref=e8]:
+          - link "HOME" [ref=e9] [cursor=pointer]:
+            - /url: index.html
+        - listitem [ref=e10]:
+          - link "ABOUT" [ref=e11] [cursor=pointer]:
+            - /url: ./About/about.html
+        - listitem [ref=e12]:
+          - link "TEAMS" [ref=e13] [cursor=pointer]:
+            - /url: ./Teams/teams.html
+        - listitem [ref=e14]:
+          - link "FILES" [ref=e15] [cursor=pointer]:
+            - /url: ./Files/files.html
+        - listitem [ref=e16]:
+          - link "PHOTO GALLERY" [ref=e17] [cursor=pointer]:
+            - /url: ./Photos/photos.html
+        - listitem [ref=e18]:
+          - link "SPONSORS" [ref=e19] [cursor=pointer]:
+            - /url: ./Sponsors/sponsors.html
+      - text: 
+    - generic [ref=e20]:
+      - heading "Mizzou AeroTigers" [level=1] [ref=e21]
+      - paragraph [ref=e22]: One of Mizzou's Flying Organizations!
+      - generic [ref=e23] [cursor=pointer]: Contact us!
+  - generic [ref=e25]:
+    - img "BENGAL Banner Flight" [ref=e27]
+    - generic [ref=e28]:
+      - heading "BENGAL Banner Flight" [level=2] [ref=e29]
+      - paragraph [ref=e30]: From our 2025-2026 season, BENGAL is gracefully flying with a 60 in. banner.
+  - generic [ref=e31]:
+    - heading "Contact Us" [level=1] [ref=e32]
+    - paragraph [ref=e33]: muaerotigers@gmail.com
+    - link [ref=e34] [cursor=pointer]:
+      - /url: https://www.instagram.com/muaerotigers/
+      - generic [ref=e35]: 
+    - link [ref=e36] [cursor=pointer]:
+      - /url: https://www.youtube.com/@MizzouAeroTigers
+      - generic [ref=e37]: 

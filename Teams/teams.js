@@ -38,21 +38,31 @@ var createTeamLead = function (sectitle, secimage, secname, secyear, secdesc) {
 
     img1.src = secimage;
 
+    img1.alt = secname;
+
+    img1.loading = "lazy";
+
     const h31 = document.createElement("h3");
 
     const node3 = document.createTextNode(sectitle);
 
     h31.appendChild(node3);
 
-    section1.appendChild(h31);
+    const info = document.createElement("div");
+
+    info.setAttribute("class", "teamlead-info");
 
     section1.appendChild(img1);
 
-    section1.appendChild(h41);
+    info.appendChild(h31);
 
-    section1.appendChild(h51);
+    info.appendChild(h41);
 
-    section1.appendChild(p2);
+    info.appendChild(h51);
+
+    info.appendChild(p2);
+
+    section1.appendChild(info);
 
     teamleadlist.push(section1);
 }
@@ -68,8 +78,10 @@ var createSection = function (i) {
         createTeamLead(sections[i][2][k][0], person.image, person.name, person.year, person.desc);
     }
     const section2 = document.createElement("section");
-        
+
     section2.id = "mainteam" + mainteamnum;
+
+    section2.setAttribute("class", "team-panel");
 
     const div1 = document.createElement("div");
 
@@ -93,25 +105,23 @@ var createSection = function (i) {
 
     section2.appendChild(div1);
 
-    if (teamleadlist.length === 1) {
-        section2.appendChild(teamleadlist[0]);
-    } else {
-        const extradiv = document.createElement("section");
+    const extradiv = document.createElement("section");
 
-        extradiv.setAttribute("class", "multi-teams");
+    extradiv.setAttribute("class", "multi-teams");
 
-        for (var k = 0; k < teamleadlist.length; k++) {
-            extradiv.appendChild(teamleadlist[k]);
-        }
-        section2.appendChild(extradiv);
+    for (var k = 0; k < teamleadlist.length; k++) {
+        extradiv.appendChild(teamleadlist[k]);
     }
+    section2.appendChild(extradiv);
 
     var element = document.getElementById("back");
 
     element.appendChild(section2);
 
 
-    const div3 = document.createElement("div");
+    const div3 = document.createElement("button");
+    div3.type = "button";
+    div3.setAttribute("class", "team-tab");
     div3.id = "teamheading" + mainteamnum;
     var tempnum = mainteamnum;
     div3.onclick = function() { TeamSelect(tempnum); };
@@ -121,13 +131,6 @@ var createSection = function (i) {
     adder.appendChild(div3);
     mainteamnum++;
 }
-var TurnDisplaysOff = function () {
-    for (var i = 2; i < mainteamnum; i++) {
-        var mainteam = document.getElementById("mainteam" + i);
-        mainteam.style.display = "none";
-    }
-}
-
 fetch("../data.json")
     .then(function (response) { return response.json(); })
     .then(function (data) {
@@ -138,63 +141,19 @@ fetch("../data.json")
         for (var j = 0; j < sections.length; j++) {
             createSection(j);
         }
-        TurnDisplaysOff();
+        TeamSelect(1);
     });
 
 var TeamSelect = function (num) {
     for (var i = 1; i < mainteamnum; i++) {
         var mainteam = document.getElementById("mainteam" + i);
-        var teamnum = document.getElementById("teamheading" + i)
+        var tab = document.getElementById("teamheading" + i);
         if (i === num) {
-            mainteam.style.display = "initial";
-            teamnum.style.borderColor = "black";
+            mainteam.style.display = "block";
+            tab.classList.add("active");
         } else {
             mainteam.style.display = "none";
-            teamnum.style.borderColor = "white";
+            tab.classList.remove("active");
         }
     }
 }
-/*
------------ What the HTML Code Looks Like -----------
-
-<section id="mainteam4">
-    <div class="teamdesc">
-        <h2>Mechanical</h2>
-        <p>The Mechanical team is responsible for the design, SolidWorks modeling, and implementation of aircraft structures and mechanisms. They are subject matter experts in the design and analysis of mechanical components, DFAM (design for additive manufacturing), and manufacturing methods.</p>
-    </div>
-
-    <section class="teamlead">
-        <h3>Team Lead</h3>
-        <img id="Team4_Image" src="">
-        <h4 id="Team4_Name">Name</h4>
-        <h5 id="Team4_Year">Year</h5>
-        <p id="Team4_Desc">Description</p>
-    </section>
-</section>
-*/
-
-/*
-<section id="mainteam1">
-    <div class="teamdesc">
-        <h2>Lead Engineers</h2>
-        <p>Two Lead Engineers supervise and manage the project by creating timetables, integrating the work of the three teams, acquiring funding, recruiting new members, and leading general body meetings. They act both as design experts and project managers. These lead engineers also represent the team to the University and the public as president and vice president.</p>
-    </div>
-
-    <div class="multi-teams">
-        <section class="teamlead">
-            <h3>President</h3>
-            <img id="Team1_Image" src="">
-            <h4 id="Team1_Name">Name</h4>
-            <h5 id="Team1_Year">Year</h5>
-            <p id="Team1_Desc">Description</p>
-        </section>
-        <section class="teamlead">
-            <h3>Vice President</h3>
-            <img id="Team1_Image2" src="">
-            <h4 id="Team1_Name2">Name</h4>
-            <h5 id="Team1_Year2">Year</h5>
-            <p id="Team1_Desc2">Description</p>
-        </section>
-    </div>
-</section>
-*/

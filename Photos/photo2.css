@@ -1,36 +1,128 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-.backarr {  
-    text-align: center;
-    width: 18%;
+html, body {
+    height: 100%;
 }
-.fullscr { 
-    text-align: center; 
-    width: 18%;
-}
-.img { 
-    text-align: center;
-    width: 64%;
-}
-.flex-container {
+body {
+    background-color: #121212;
     display: flex;
-    margin-top: 10px;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
 }
-.fa-solid {
-    font-size: 50px;
-    color: black;
+
+/* ----- Top bar (close, counter, fullscreen) ----- */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    flex-shrink: 0;
 }
-.fa-solid:hover {
-    color: grey;
+#photocounter {
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 1px;
+    user-select: none;
+}
+.iconbtn {
+    background: none;
+    border: none;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
     cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s;
+}
+.iconbtn i {
+    color: #fff;
+    font-size: 24px;
+}
+.iconbtn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ----- Image viewer ----- */
+.viewer {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 72px 16px;
 }
 #image1 {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
+/* ----- Next / back buttons ----- */
+.navbtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s;
+}
+.navbtn i {
+    color: #fff;
+    font-size: 22px;
+}
+.navbtn:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+#prevbtn {
+    left: 12px;
+}
+#nextbtn {
+    right: 12px;
+}
+.navbtn.disabled {
+    opacity: 0.25;
+    cursor: default;
+    pointer-events: none;
+}
 
-
-@media(max-width: 700px) {
+@media (max-width: 700px) {
+    .viewer {
+        padding: 0 0 12px;
+    }
+    /* Arrows overlay the photo edges on small screens */
+    .navbtn {
+        width: 42px;
+        height: 42px;
+        background-color: rgba(0, 0, 0, 0.45);
+    }
+    .navbtn i {
+        font-size: 18px;
+    }
+    #prevbtn {
+        left: 8px;
+    }
+    #nextbtn {
+        right: 8px;
+    }
+    .iconbtn i {
+        font-size: 22px;
+    }
+    #photocounter {
+        font-size: 14px;
+    }
 }
