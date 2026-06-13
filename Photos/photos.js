@@ -258,17 +258,31 @@ RightButton2.addEventListener('click', function() {
 });
 
 function ImagePressed(num) {
+  var category, type, shownnum;
   if (num === 1) {
-    localStorage.setItem("imagecategory", "Normal");
-    localStorage.setItem("imagetype", photoTypes[currentFileList["Normal"][currentnum1 - 1]]);
+    category = "Normal";
+    type = photoTypes[currentFileList["Normal"][currentnum1 - 1]];
+    shownnum = currentnum1;
   } else if (num === 2) {
-    localStorage.setItem("imagecategory", "Competition");
-    localStorage.setItem("imagetype", photoTypes[currentFileList["Competition"][currentnum2 - 1]]);
+    category = "Competition";
+    type = photoTypes[currentFileList["Competition"][currentnum2 - 1]];
+    shownnum = currentnum2;
   }
+  localStorage.setItem("imagecategory", category);
+  localStorage.setItem("imagetype", type);
   localStorage.setItem("imagenum1", currentnum1);
   localStorage.setItem("imagenum2", currentnum2);
   localStorage.setItem("imageyear", photosdata[selectnum][0]);
   localStorage.setItem("currentFiles", JSON.stringify(currentFileList));
+  // Put the selection in the link so the opened photo2 page (and any shared
+  // copy of its URL) shows this exact photo.
+  var qs = "?year=" + encodeURIComponent(photosdata[selectnum][0]) +
+           "&cat=" + category + "&num=" + shownnum;
+  if (type) {
+    qs += "&type=" + encodeURIComponent(type);
+  }
+  var img = (num === 1) ? Image1 : Image2;
+  img.parentNode.setAttribute("href", "photo2.html" + qs);
 }
 
 Image1.addEventListener('click', function() {

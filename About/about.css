@@ -10,7 +10,7 @@
 }
 .whitebox {
     width: 50%;
-    height: 60%;
+    min-height: 60%;
     background-color: white;
     opacity: 0.8;
     margin: auto;
@@ -99,10 +99,13 @@
 
 @media (max-height: 500px) and (min-width: 600px) {
     .whitebox {
-        height: 700px;
+        min-height: 700px;
     }
     .back {
-        height: 1200px;
+        height: auto;
+        min-height: 1200px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 }
 
@@ -140,10 +143,14 @@
     }
     .whitebox {
         width: 70%;
-        height: 900px;
+        min-height: 900px;
     }
     .whitebox h1 {
         font-size: 25px;
+    }
+    .whitebox p {
+        padding-left: 20px;
+        padding-right: 20px;
     }
     .pastbox { 
         width: 80%;

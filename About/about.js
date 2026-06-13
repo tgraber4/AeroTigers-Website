@@ -40,6 +40,35 @@ var pastComp = function () {
 }
 
 
+/*
+Dynamic "third year" word in the history paragraph.
+The Mizzou AeroTigers' first academic year was 2022-2023, so this counts how
+many academic years in we are and writes the matching ordinal word (e.g.
+"third") into the <span id="recognitionYear">. Academic years are treated as
+rolling over in August. If you count from a different season, change
+FIRST_ACADEMIC_YEAR (the start calendar year of year #1).
+*/
+var FIRST_ACADEMIC_YEAR = 2022; // 2022-2023 = "first"
+
+var recognitionYearWord = function () {
+    var now = new Date();
+    // From August (month index 7) onward, the new academic year has begun.
+    var academicStartYear = (now.getMonth() >= 7) ? now.getFullYear() : now.getFullYear() - 1;
+    var n = academicStartYear - FIRST_ACADEMIC_YEAR + 1;
+    if (n < 1) {
+        n = 1;
+    }
+    var words = ["first", "second", "third", "fourth", "fifth", "sixth",
+                 "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"];
+    return words[n - 1] || (n + "th");
+};
+
+var recognitionYearEl = document.getElementById("recognitionYear");
+if (recognitionYearEl) {
+    recognitionYearEl.textContent = recognitionYearWord();
+}
+
+
 
 // <p>Mizzou AeroTigers Alumni have gone on to work at companies like Boeing, Textron, Spirit, and Northrop Grumman. We have an extensive network of alumni who have accomplished some amazing feats due to their time at Mizzou AeroTigers.</p>
 

@@ -22,7 +22,7 @@ var AddProposal = function (FileName, IdYear, Ranking) {
     const secondinsidediv = document.createElement("div");
     secondinsidediv.classList.add("Yearsholder");
     const a = document.createElement("a");
-    a.href = "files2.html";
+    a.href = "files2.html?doc=" + encodeURIComponent(IdYear);
     a.setAttribute("id",IdYear);
     const p = document.createElement("p");
     const node = document.createTextNode(FileName);
